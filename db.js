@@ -1,5 +1,19 @@
+// import { Mongoose } from 'mongoose';
+
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/chat');
+const config = require('./config').config;
+
+
+function Init() {
+    return new Promise((resolve, reject) => {
+        mongoose.connect(config.mongoUrl);
+        let db = mongoose.connection;
+        db.on('error', reject);
+        db.once('open', function() {
+            resolve()
+        });
+    });
+}
 
 
 const Message = mongoose.model('Message', { 
@@ -15,5 +29,6 @@ const User = mongoose.model('User', {
     usercolor: String
 });
 
-exports.Message = Message
-exports.User = User
+exports.Message = Message;
+exports.User = User;
+exports.Init = Init;
