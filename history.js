@@ -21,7 +21,6 @@ function getHistory() {
 
 function addToHistory(message) {
     return new Promise((resolve, reject) => {
-        console.log('addToHistory');
         const dbMessage = db.Message(
             {
                 text: message.text,
@@ -31,13 +30,10 @@ function addToHistory(message) {
                 date: new Date()
             }
         );
-        console.log(dbMessage);
         dbMessage.save((err) => {
             if (err) {
-                console.log(err);
                 reject(err);
             } else {
-                console.log('ok');
                 resolve()
             }
         });    

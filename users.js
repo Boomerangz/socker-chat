@@ -2,7 +2,6 @@ const db = require('./db');
 
 
 const colors = [ 'red', 'green', 'blue', 'magenta', 'purple', 'plum', 'orange' ];
-colors.sort(function(a,b) { return Math.random() > 0.5; } );
 
 function randomColor() {
     return colors[Math.floor(Math.random()*colors.length)];    

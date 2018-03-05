@@ -9,11 +9,6 @@ console.log((new Date()) + " Server is listening on port "
 const history = require('./history');
 const users = require('./users');
 
-//const WebSocket = require('websocket');
-//const webSocketServer = WebSocket.server;
-
-
-
 
 async function addUser(username, connection) {  
   const token = await users.addUser(username);      
@@ -83,7 +78,6 @@ wss.on('connection', async function(connection) {
   // user sent some message
   connection.on('message', async function(message) {
      const data = JSON.parse(message);     
-     console.log(data);
      if (data.username) {
         addUser(data.username, connection);
       } else if (data.token && !(data.message)) {        
